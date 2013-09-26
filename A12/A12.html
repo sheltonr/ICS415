@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8 />
+		<title>A12</title>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<script>
+			function countElement() {
+				var page = document.getElementById("in").value;
+				var elementName = document.getElementById("elem").value;
+				$(".large").empty().load(page, function(responseTxt, statusTxt, xhr) {
+					if (statusTxt == "success") {
+						var doc = xhr.responseXML;
+						var count = $(elementName, doc).length;
+						$('#table').append("|" + elementName + "|" + count + "|" +"<br>");
+					}
+					if (statusTxt == "error")
+						alert("Error: " + xhr.status + ": " + xhr.statusText);
+				});
+				return false;
+			}
+
+			function getPage() {
+				var page = document.getElementById("in").value;
+				$(".large").load(page);
+				$('.small').load(page);
+				return false;
+			}
+		</script>
+
+		<style type="text/css">
+			.mainDiv {
+				width: 100%;
+				height: auto;
+				padding: 2cm;
+				background-color:white;
+			}
+			.small {
+				width: 480px;
+				height: 320px;
+				border-style: solid;
+				border-color: black;
+				overflow: auto;
+			}
+			.large {
+				width: 768px;
+				height: 1024px;
+				border-style: solid;
+				border-color: black;
+				overflow: auto;
+			}
+			.table {
+				font-size: medium;
+				float:right;
+				width:15%;
+				height:auto;
+				padding-right:4cm
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainDiv">
+			<form action="demo_form.html" onsubmit="return getPage();" method="post">
+				URL:
+				<input id="in" type="url" name="url" value="">
+				<br>
+				<input type="submit">
+			</form>
+			<form action="demo_form.html" onsubmit="return countElement();" method="post">
+				Element Name:
+				<input id="elem" type="text" name="elem" value="">
+				<br>
+				<input type="submit">
+			</form>
+			<div id="table" class="table">
+				|Tag|Count|
+				<br>
+				|---|-----|
+				<br>
+
+			</div>
+			<div class="small"></div>
+
+			<div class="large"></div>
+			
+	</div>
+	</body>
+</html>
