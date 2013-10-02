@@ -28,7 +28,7 @@ $con = mysqli_connect($server, $user, $pass);
 $selected = mysqli_select_db($con, $db);
 //cant find database.. so create it then connect to it
 if(!$selected) {
-	$sql = 'CREATE DATABASE comments';
+	$sql = 'CREATE DATABASE ' .$db;
 	mysqli_query($con, $sql);
 	$con = mysqli_connect($server, $user, $pass, $db);
 }else { //found the database, so connect to it
