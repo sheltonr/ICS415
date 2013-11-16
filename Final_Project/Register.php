@@ -1,6 +1,8 @@
 <?php
 	//start session
 	session_start();
+	date_default_timezone_set('Pacific/Honolulu');
+	$time = date('l jS \of F Y');
 	
 	//credentials
 	$host = 'localhost';
@@ -25,15 +27,16 @@
 		$sql = "SELECT name, pass FROM myUsers WHERE name = '".$myUser."' AND pass = '".$myUserPass."';";
 		$result = mysqli_query($con, $sql);
 		//user not found
-		if (mysqli_num_rows($result) === 0 && $myUserPass === $confirmPass) {
-				$sql = "INSERT INTO myUsers(name, pass) VALUES('".$myUser."', '".$myUserPass."');";
+		if ($myUserPass != $confirmPass) {
+			$status = 'Passwords do not match.';
+		} elseif (strlen($myUserPass) < 7){
+			$status = 'Password must be atleast 7 characters';
+		} elseif (mysqli_num_rows($result) === 0 && $myUserPass === $confirmPass) {
+				$sql = "INSERT INTO myUsers(name, pass, created) VALUES('".$myUser."', '".$myUserPass."', '".$time."');";
 				mysqli_query($con, $sql);
 				$_SESSION['status'] = 'Account successfully created.';
-				sleep(2);
 				header('Location: Login.php');
 				die();
-		} elseif ($myUserPass != $confirmPass) {
-			$status = 'Passwords do not match.';
 		} else {
 			$status = 'User already exists.';
 		}
@@ -41,7 +44,7 @@
 	
 	//check for session
 	if (isset($_SESSION['active'])) {
-		header('Location: Main.php');
+		header('Location: Index.php');
 		die();
 	}
 ?>
@@ -55,49 +58,17 @@
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+		<!-- Css -->
+		<link href="css/login.css" rel="stylesheet" media="screen">
 		<!-- Ajax -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<!-- JavaScript -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/myScripts.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="../../assets/js/html5shiv.js"></script>
 		<script src="../../assets/js/respond.min.js"></script>
 		<![endif]-->
-
-		<!-- Login form overrides -->
-		<style type="text/css">
-			html, body {
-				background-color: #505050;
-			}
-			body {
-				padding-top: 140px;
-			}
-			.container {
-				width: 300px;
-			}
-			/* The white background content wrapper */
-			.container > .content {
-				background-color: #fff;
-				padding: 20px;
-				margin: 0 -20px;
-				-webkit-border-radius: 10px 10px 10px 10px;
-				-moz-border-radius: 10px 10px 10px 10px;
-				border-radius: 10px 10px 10px 10px;
-				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-				-moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-				box-shadow: 0 1px 2px rgba(0,0,0,.15);
-			}
-			.login-form {
-				margin-left: 65px;
-			}
-			legend {
-				margin-right: -50px;
-				font-weight: bold;
-				color: #404040;
-			}
-		</style>
 	</head>
 	<body>
 		<script language='javascript'>changeStatus('invalid');</script>

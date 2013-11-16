@@ -23,11 +23,12 @@
 		$con = mysqli_connect($host, $user, $pass, $db);
 	}
 	//create tables if needed
-	$sql = 'CREATE TABLE IF NOT EXISTS myUsers(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), name VARCHAR(40) NOT NULL, pass VARCHAR(40))';
+	$sql = 'CREATE TABLE IF NOT EXISTS myUsers(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), name VARCHAR(40) NOT NULL, pass VARCHAR(40) NOT NULL, 
+	last_login VARCHAR(60) DEFAULT "Never", created VARCHAR(60) NOT NULL)';
 	mysqli_query($con, $sql);
 	
 	if (isset($_SESSION['active'])) {
-		header('Location: Main.php');
+		header('Location: Index.php');
 		die();
 	} elseif (isset($_SESSION['status'])) {
 		$status = $_SESSION['status'];
@@ -43,8 +44,10 @@
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+		<!-- Css -->
+		<link href="css/login.css" rel="stylesheet" media="screen">
 		<!-- Ajax -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<!-- JavaScript -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/myScripts.js"></script>
@@ -55,37 +58,6 @@
 		<![endif]-->
 
 		<!-- Login form overrides -->
-		<style type="text/css">
-			html, body {
-				background-color: #505050;
-			}
-			body {
-				padding-top: 140px;
-			}
-			.container {
-				width: 300px;
-			}
-			/* The white background content wrapper */
-			.container > .content {
-				background-color: #fff;
-				padding: 20px;
-				margin: 0 -20px;
-				-webkit-border-radius: 10px 10px 10px 10px;
-				-moz-border-radius: 10px 10px 10px 10px;
-				border-radius: 10px 10px 10px 10px;
-				-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-				-moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-				box-shadow: 0 1px 2px rgba(0,0,0,.15);
-			}
-			.login-form {
-				margin-left: 65px;
-			}
-			legend {
-				margin-right: -50px;
-				font-weight: bold;
-				color: #404040;
-			}
-		</style>
 	</head>
 	<body>
 		<script language='javascript'>changeStatus('invalid');</script>
@@ -94,7 +66,7 @@
 		<div class="row">
 		<div class="login-form">
 		<h2>Login</h2>
-		<form action="Main.php" method="post">
+		<form action="Index.php" method="post">
 		<fieldset>
 		<div class="form-group">
 		<input type="text" name="user" placeholder="Username">
