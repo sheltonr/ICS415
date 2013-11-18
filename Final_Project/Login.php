@@ -6,7 +6,7 @@
 	$host = 'localhost';
 	$user ='user';
 	$pass = 'pwd';
-	$db = 'myUsers';
+	$db = 'FinalProject';
 	
 	//status message
 	$status = '';
@@ -24,10 +24,10 @@
 	}
 	//create tables if needed
 	$sql = 'CREATE TABLE IF NOT EXISTS myUsers(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), name VARCHAR(40) NOT NULL, pass VARCHAR(40) NOT NULL, 
-	last_login VARCHAR(60) DEFAULT "Never", created VARCHAR(60) NOT NULL)';
+	background VARCHAR(20) DEFAULT "None", last_login VARCHAR(60) DEFAULT "Never", created VARCHAR(60) NOT NULL)';
 	mysqli_query($con, $sql);
 	
-	if (isset($_SESSION['active'])) {
+	if (isset($_SESSION['user'])) {
 		header('Location: Index.php');
 		die();
 	} elseif (isset($_SESSION['status'])) {
@@ -39,7 +39,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Final Project</title>
+		<title>Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -56,8 +56,6 @@
 		<script src="../../assets/js/html5shiv.js"></script>
 		<script src="../../assets/js/respond.min.js"></script>
 		<![endif]-->
-
-		<!-- Login form overrides -->
 	</head>
 	<body>
 		<script language='javascript'>changeStatus('invalid');</script>

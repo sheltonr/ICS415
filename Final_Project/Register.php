@@ -8,7 +8,7 @@
 	$host = 'localhost';
 	$user ='user';
 	$pass = 'pwd';
-	$db = 'myUsers';
+	$db = 'FinalProject';
 	//status message
 	$status = '';
 	//generic connection no database
@@ -43,7 +43,7 @@
 	}
 	
 	//check for session
-	if (isset($_SESSION['active'])) {
+	if (isset($_SESSION['user'])) {
 		header('Location: Index.php');
 		die();
 	}
@@ -53,7 +53,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Final Project</title>
+		<title>Register</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
