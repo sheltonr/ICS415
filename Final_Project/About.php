@@ -2,12 +2,6 @@
 	//start session
 	session_start();
 	
-	//logout
-	if (isset($_POST['logout'])) {
-		session_unset();
-		session_destroy();
-	}
-	
 	//check for session
 	if (!isset($_SESSION['user'])) {
 		header('Location: Login.php');
@@ -15,15 +9,22 @@
 	}
 	/**************************************FUNCTIONS**********************************/
 	function background() {
-		if($_SESSION['background'] != 'none') {
-			echo'
-			<style type="text/css">
-				html, body {
-					background-image:url(images/' . $_SESSION['background'] . '.jpg);
-					background-repeat:repeat;
-				}
-			</style>';
+		echo '<style type="text/css">';
+		if($_SESSION['background'] != 'None') {
+			echo '
+			html, body {
+				background-image:url(images/backgrounds/' . $_SESSION['background'] . '.jpg);
+				background-repeat:repeat;
+			}';
 		}
+		if($_SESSION['header'] != 'None') {
+			echo '
+			#myheader {
+				background-image:url(images/headers/' . $_SESSION['header'] . '.jpg);
+				font-color: #fff;
+			}';
+		}
+		echo '</style>';
 	}
 ?>
 
@@ -83,10 +84,9 @@
 		<!-- Content -->
 		<div class="container">
 			<div class="jumbotron" id="myheader">
-			<div class="header"><h2>About</h2></div>
+			<h2>About</h2>
 			</div>
 			<div class="jumbotron">
-				<div class="header" id="title"><h2>Web Technologies</h2></div>
 				<div id="Carousel" class="carousel slide">
 				<ol class="carousel-indicators">
 				<li data-target="Carousel" data-slide-to="0" class="active"></li>
@@ -100,13 +100,8 @@
 				<img src="images/body-bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
-							<button type="button" class="btn btn-md btn-primary"><h1>Make</h1></button>
-							<button type="button" class="btn btn-md btn-success"><h1>responsive</h1></button>
-							<button type="button" class="btn btn-md btn-info"><h1>webpages</h1></button>
-							<button type="button" class="btn btn-md btn-warning"><h1>with</h1></button>
-							<button type="button" class="btn btn-md btn-danger"><h1>Bootstrap!</h1></button>
 							<h1> Bootstrap </h1>
-							
+							<p>Make responsive pages with Bootstrap!</p>
 						</div>
 					</div>
 				</div> <!-- item 0 -->
@@ -114,8 +109,8 @@
 				<img src="images/body-bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
-							<img src="images/php.jpg" class="img-rounded img-responsive">
 							<h1> PHP </h1>
+							<h3> PHP Hypertext Preprocessor </h3>
 						</div>
 					</div>
 				</div> <!-- item 1 -->
@@ -123,8 +118,8 @@
 				<img src="images/body-bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
-							<img src="images/mysql.jpg" class="img-thumbnail img-responsive">
 							<h1> MySQL </h1>
+							<h3> Relational Database Management System </h3>
 						</div>
 					</div>
 				</div> <!-- item 2 -->
@@ -132,8 +127,8 @@
 				<img src="images/body-bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
-						<img src="images/javascript.jpg" class="img-thumbnail img-responsive">
 							<h1> Javascript </h1>
+							<h3> Scripting language </h3>
 						</div>
 					</div>
 				</div> <!-- item 3 -->
@@ -141,8 +136,8 @@
 				<img src="images/body-bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
-							<img src="images/jquery.jpg" class="img-thumbnail img-responsive">
 							<h1> AJAX </h1>
+							<h3> Asynchronous Javascript and XML </h3>
 						</div>
 					</div>
 				</div> <!-- item 4 -->

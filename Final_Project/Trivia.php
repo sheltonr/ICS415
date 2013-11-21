@@ -20,15 +20,22 @@
 	}
 	
 	function background() {
-		if($_SESSION['background'] != 'none') {
-			echo'
-			<style type="text/css">
-				html, body {
-					background-image:url(images/' . $_SESSION['background'] . '.jpg);
-					background-repeat:repeat;
-				}
-			</style>';
+		echo '<style type="text/css">';
+		if($_SESSION['background'] != 'None') {
+			echo '
+			html, body {
+				background-image:url(images/backgrounds/' . $_SESSION['background'] . '.jpg);
+				background-repeat:repeat;
+			}';
 		}
+		if($_SESSION['header'] != 'None') {
+			echo '
+			#myheader {
+				background-image:url(images/headers/' . $_SESSION['header'] . '.jpg);
+				font-color: #fff;
+			}';
+		}
+		echo '</style>';
 	}
 ?>
 
@@ -98,7 +105,7 @@
 		<!-- Content -->
 		<div class="container">
 			<div class ="jumbotron" id="myheader">
-			<div class ="header"><h2>Trivia</h2></div>
+			<h2>Trivia</h2>
 			</div>
 			<div class ="jumbotron">
 				<div class="row">
@@ -106,7 +113,7 @@
 						<h2>Daily Trivia
 							<button type="button" id="toggle" class="btn btn-sm btn-success">Show answer</button>
 						</h2>
-							<p class="alert alert-info" id="question"><strong>Question</strong></p>
+							<p class="alert alert-warning" id="question"><strong>Question</strong></p>
 							<p class="alert alert-success" id="answer"><strong>Answer</strong></p>
 					</div>
 				</div>

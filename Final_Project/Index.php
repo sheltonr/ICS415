@@ -2,14 +2,14 @@
 	//start session
 	session_start();
 	date_default_timezone_set('Pacific/Honolulu');
-	$dateTime = date('l jS \of F Y h:i:s A');
-	$date = date('l jS \of F Y');
+	$dateTime = date('M, j, Y g:i A');
+	$date = date('M, j, Y');
 	
 	//credentials
 	$host = 'localhost';
 	$user ='user';
 	$pass = 'pwd';
-	$db = 'FinalProject';	
+	$db = 'myWebsiteDatabase';	
 		
 	//status message
 	$status = '';
@@ -17,7 +17,7 @@
 	//connection to database
 	$con = mysqli_connect($host, $user, $pass, $db);
 	//try to login
-	if (isset($_POST['submit'])) {
+	if (isset($_POST['login'])) {
 		//santization
 		$myUser = mysql_real_escape_string($_POST['user']);
 		$myUser = stripslashes($myUser);
@@ -25,28 +25,35 @@
 		$myUserPass = mysql_real_escape_string($_POST['pass']); 
 		$myUserPass = stripslashes($myUserPass);
 		$myUserPass = strip_tags($myUserPass);
+		$myUserPass = md5($myUserPass);
 		//user name or pass not given
 		if ($myUser == '' || $myUserPass == '') {
 			$_SESSION['status'] = 'Requires username and password';
 			header('Location: Login.php');
 			die();
 		}
-		$sql = "SELECT id, name, created, last_login, background FROM myUsers WHERE name = '".$myUser."' AND pass = '".$myUserPass."';";
+		$sql = "SELECT id, name FROM myUsers WHERE name = '".$myUser."' AND pass = '".$myUserPass."';";
 		$result = mysqli_query($con, $sql);
 		$row = mysqli_fetch_array($result);
-		//user found get session info
+		//user found set session info
 		if (mysqli_num_rows($result) === 1) {
+			//user name and id
 			$_SESSION['user'] = $myUser;
 			$_SESSION['id'] = $row{'id'};
-			$_SESSION['created'] = $row{'created'};
-			$_SESSION['last_login'] = $row{'last_login'};
 			$_SESSION['date'] = $date;
+			//user data
+			$sql = "SELECT background, header, last_login, created FROM myUsersData WHERE id = '".$_SESSION['id']."';";
+			$result = mysqli_query($con, $sql);
+			$row = mysqli_fetch_array($result);
 			$_SESSION['background'] = $row{'background'};
-			$sql = "UPDATE myUsers SET last_login = '".$dateTime."' WHERE name = '".$myUser."' AND pass = '".$myUserPass."';";
-			mysqli_query($con, $sql);
+			$_SESSION['header'] = $row{'header'};
+			$_SESSION['last_login'] = $row{'last_login'};
+			$_SESSION['created'] = $row{'created'};
 			//homepage trivia stuff
 			$_SESSION['trivia_questions'] = read('Trivia/Trivia_Questions.txt');
 			$_SESSION['trivia_answers'] = read('Trivia/Trivia_Answers.txt');
+			$sql = "UPDATE myUsersData SET last_login = '".$dateTime."' WHERE id = '".$_SESSION['id']."';";
+			mysqli_query($con, $sql);
 			//return homepage
 			header('Location: Home.php');
 			die();
@@ -59,11 +66,16 @@
 	
 	//background
 	if (isset($_POST['background'])) {
-		if($_POST['background'] != '') {
-			$sql = "UPDATE myUsers SET background = '".$_POST['background']."' WHERE id = '".$_SESSION['id']."';";
-			mysqli_query($con, $sql);
-			$_SESSION['background'] = $_POST['background'];
-		}
+		$sql = "UPDATE myUsersData SET background = '".$_POST['background']."' WHERE id = '".$_SESSION['id']."';";
+		mysqli_query($con, $sql);
+		$_SESSION['background'] = $_POST['background'];
+	}
+	
+	//header
+	if (isset($_POST['header'])) {
+		$sql = "UPDATE myUsersData SET header = '".$_POST['header']."' WHERE id = '".$_SESSION['id']."';";
+		mysqli_query($con, $sql);
+		$_SESSION['header'] = $_POST['header'];
 	}
 	
 	//logout

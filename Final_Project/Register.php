@@ -2,13 +2,13 @@
 	//start session
 	session_start();
 	date_default_timezone_set('Pacific/Honolulu');
-	$time = date('l jS \of F Y');
+	$time =  date('M, j, Y');
 	
 	//credentials
 	$host = 'localhost';
 	$user ='user';
 	$pass = 'pwd';
-	$db = 'FinalProject';
+	$db = 'myWebsiteDatabase';
 	//status message
 	$status = '';
 	//generic connection no database
@@ -24,15 +24,18 @@
 		$confirmPass = mysql_real_escape_string($_POST['confirm']); 
 		$confirmPass = stripslashes($confirmPass);
 		$confirmPass = strip_tags($confirmPass);
-		$sql = "SELECT name, pass FROM myUsers WHERE name = '".$myUser."' AND pass = '".$myUserPass."';";
+		$realUserPass = md5($myUserPass);
+		$sql = "SELECT name, pass FROM myUsers WHERE name = '".$myUser."' AND pass = '".$realUserPass."';";
 		$result = mysqli_query($con, $sql);
 		//user not found
 		if ($myUserPass != $confirmPass) {
 			$status = 'Passwords do not match.';
-		} elseif (strlen($myUserPass) < 7){
+		} elseif (strlen($_POST['pass']) < 7){
 			$status = 'Password must be atleast 7 characters';
 		} elseif (mysqli_num_rows($result) === 0 && $myUserPass === $confirmPass) {
-				$sql = "INSERT INTO myUsers(name, pass, created) VALUES('".$myUser."', '".$myUserPass."', '".$time."');";
+				$sql = "INSERT INTO myUsers(name, pass) VALUES('".$myUser."', '".$realUserPass."');";
+				mysqli_query($con, $sql);
+				$sql = "INSERT INTO myUsersData(created) VALUES('".$time."');";
 				mysqli_query($con, $sql);
 				$_SESSION['status'] = 'Account successfully created.';
 				header('Location: Login.php');
@@ -71,7 +74,6 @@
 		<![endif]-->
 	</head>
 	<body>
-		<script language='javascript'>changeStatus('invalid');</script>
 		<div class="container">
 		<div class="content">
 		<div class="row">

@@ -9,15 +9,22 @@
 	}
 	/**************************************FUNCTIONS**********************************/
 	function background() {
-		if($_SESSION['background'] != 'none') {
-			echo'
-			<style type="text/css">
-				html, body {
-					background-image:url(images/' . $_SESSION['background'] . '.jpg);
-					background-repeat:repeat;
-				}
-			</style>';
+		echo '<style type="text/css">';
+		if($_SESSION['background'] != 'None') {
+			echo '
+			html, body {
+				background-image:url(images/backgrounds/' . $_SESSION['background'] . '.jpg);
+				background-repeat:repeat;
+			}';
 		}
+		if($_SESSION['header'] != 'None') {
+			echo '
+			#myheader {
+				background-image:url(images/headers/' . $_SESSION['header'] . '.jpg);
+				font-color: #fff;
+			}';
+		}
+		echo '</style>';
 	}
 ?>
 
@@ -77,38 +84,66 @@
 		<!-- Content -->
 		<div class="container">
 			<div class ="jumbotron" id="myheader">
-			<div class ="header"><h2>Home</h2></div>
+			<h2>Home</h2>
 			</div>
 			<div class ="jumbotron">
 				<div class="row">
 					<div class="col-md-6">
-						<p id="avatar">
-						<a href="#" class="img-responsive">
-						<img src="images/black.jpg" alt="..." class="img-responsive" width="171" height="180" />
-						</a>
-						Me
-						</p>
-						
-						<h2>My Background:</h2>
+						<h2>Backgrounds:</h2>
 							<button type="button" name="background" class="btn btn-default" onclick="background('None')">
-								<img src="images/default.jpg" alt="..." class="img-responsive" width="71" height="80" />
+								<img src="images/backgrounds/default.jpg" alt="..." class="img-responsive" width="71" height="80" />
 								None
 							</button>
 							<button type="button" name="background" class="btn btn-default" onclick="background('Black')">
-								<img src="images/black.jpg" alt="..." class="img-responsive" width="71" height="80" />
+								<img src="images/backgrounds/black.jpg" alt="..." class="img-responsive" width="71" height="80" />
 								Black
 							</button>
 							<button type="button" name="background" class="btn btn-default" onclick="background('Textured')">
-								<img src="images/textured.jpg" alt="..." class="img-responsive" width="71" height="80" />
+								<img src="images/backgrounds/textured.jpg" alt="..." class="img-responsive" width="71" height="80" />
 								Textured
 							</button>
+							<button type="button" name="background" class="btn btn-default" onclick="background('Water')">
+								<img src="images/backgrounds/water.jpg" alt="..." class="img-responsive" width="71" height="80" />
+								Water
+							</button>
+							<button type="button" name="background" class="btn btn-default" onclick="background('Pink')">
+								<img src="images/backgrounds/pink.jpg" alt="..." class="img-responsive" width="71" height="80" />
+								Pink
+							</button>
 							<button type="button" name="background" class="btn btn-default" onclick="background('Yellow')">
-								<img src="images/yellow.jpg" alt="..." class="img-responsive" width="71" height="80" />
+								<img src="images/backgrounds/yellow.jpg" alt="..." class="img-responsive" width="71" height="80" />
 								Yellow
 							</button>
+						<h2>Header Images:</h2>
+							<button type="button" name="background" class="btn btn-default" onclick="header('None')">
+								<img src="images/headers/default.jpg" alt="..." class="img-responsive" width="160" height="80" />
+								None
+							</button>
+							<button type="button" name="background" class="btn btn-default" onclick="header('Drops')">
+								<img src="images/headers/drops.jpg" alt="..." class="img-responsive" width="160" height="80" />
+								Drops
+							</button>
+							<button type="button" name="background" class="btn btn-default" onclick="header('Leaf')">
+								<img src="images/headers/leaf.jpg" alt="..." class="img-responsive" width="160" height="80" />
+								Leaf
+							</button>
+							<button type="button" name="background" class="btn btn-default" onclick="header('Crayon')">
+								<img src="images/headers/crayon.jpg" alt="..." class="img-responsive" width="160" height="80" />
+								Crayon
+							</button>
+							<button type="button" name="background" class="btn btn-default" onclick="header('Apples')">
+								<img src="images/headers/apples.jpg" alt="..." class="img-responsive" width="160" height="80" />
+								Apples
+							</button>
+							<button type="button" name="background" class="btn btn-default" onclick="header('Oranges')">
+								<img src="images/headers/oranges.jpg" alt="..." class="img-responsive" width="160" height="80" />
+								Oranges
+							</button>
+						<p><br/></p>
 						<form action="Index.php" method="post">
 						<button type="submit" class="btn btn-primary" onclick="selected()">Save changes</button>
-						<input type="hidden" id="background" name="background" value="None" </input>
+						<input type="hidden" id="background" name="background" value=<?php echo $_SESSION['background']; ?> </input>
+						<input type="hidden" id="header" name="header" value=<?php echo $_SESSION['header']; ?> </input>
 						</form>
 					</div>
 					<div class="col-md-4 col-md-offset-2">
@@ -118,8 +153,10 @@
 						<h4> <?php echo $_SESSION['created'];?> </br> </h4>
 						<h3> Last session: </br> </h3>
 						<h4> <?php echo $_SESSION['last_login'];?> </br> </h4>
-						<h3> Current background: </br> </h3>
+						<h3> Your background: </br> </h3>
 						<h4> <?php echo $_SESSION['background'];?> </br> </h4>
+						<h3> Your header image: </br> </h3>
+						<h4> <?php echo $_SESSION['header'];?> </br> </h4>
 					</div>
 				</div>
 			</div>

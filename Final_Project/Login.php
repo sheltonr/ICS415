@@ -6,7 +6,7 @@
 	$host = 'localhost';
 	$user ='user';
 	$pass = 'pwd';
-	$db = 'FinalProject';
+	$db = 'myWebsiteDatabase';
 	
 	//status message
 	$status = '';
@@ -23,10 +23,11 @@
 		$con = mysqli_connect($host, $user, $pass, $db);
 	}
 	//create tables if needed
-	$sql = 'CREATE TABLE IF NOT EXISTS myUsers(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), name VARCHAR(40) NOT NULL, pass VARCHAR(40) NOT NULL, 
-	background VARCHAR(20) DEFAULT "None", last_login VARCHAR(60) DEFAULT "Never", created VARCHAR(60) NOT NULL)';
+	$sql = 'CREATE TABLE IF NOT EXISTS myUsers(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), name VARCHAR(40) NOT NULL, pass VARCHAR(200) NOT NULL)';
 	mysqli_query($con, $sql);
-	
+	$sql = 'CREATE TABLE IF NOT EXISTS myUsersData(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY(id), background VARCHAR(20) DEFAULT "None", 
+			header VARCHAR(20) DEFAULT "None", last_login VARCHAR(60) DEFAULT "Never", created VARCHAR(60) NOT NULL)';
+	mysqli_query($con, $sql);
 	if (isset($_SESSION['user'])) {
 		header('Location: Index.php');
 		die();
@@ -50,7 +51,6 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<!-- JavaScript -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/myScripts.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="../../assets/js/html5shiv.js"></script>
@@ -58,7 +58,6 @@
 		<![endif]-->
 	</head>
 	<body>
-		<script language='javascript'>changeStatus('invalid');</script>
 		<div class="container">
 		<div class="content">
 		<div class="row">
@@ -72,7 +71,7 @@
 		<div class="form-group">
 		<input type="password" name="pass" placeholder="Password">
 		</div>
-		<button class="btn btn-primary" name="submit" type="submit">Sign in</button>
+		<button class="btn btn-primary" name="login" type="submit">Sign in</button>
 		<input type="button" class="btn btn-primary" value="Register" name="register" onclick="window.location='/Final_Project/Register.php';"></button>
 		</fieldset>
 		<h4 id="status"><?php echo $status; ?></h4>

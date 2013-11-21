@@ -1,4 +1,5 @@
-var selected = 'None';
+var backgroundColor = 'None';
+var headerImage = 'None';
 var curr = 0;
 var answers;
 var questions;
@@ -23,15 +24,26 @@ $(function() {
 });
 
 function background(color) {
-	if (color != 'none') {
-		$('html body').css('background-image', 'url(images/'+color+'.jpg)');
-		$('html body').css('background-repeat', 'repeat');
-		selected = color;
+	if (color != 'None') {
+		$('html, body').css('background-image', 'url(images/backgrounds/'+color+'.jpg)');
+		$('html, body').css('background-repeat', 'repeat');
+		backgroundColor = color;
 	} else {
-		$('html body').css('background-image', color);
-		selected = color;
+		$('html, body').css('background-image', color);
+		backgroundColor = color;
 	}
-	$('#background').val(selected);
+	$('#background').val(backgroundColor);
+}
+
+function header(image) {
+	if (image != 'None') {
+		$('#myheader').css('background-image', 'url(images/headers/'+image+'.jpg)');
+		headerImage = image;
+	} else {
+		$('#myheader').css('background-image', image);
+		headerImage = image;
+	}
+	$('#header').val(headerImage);
 }
 
 function next() {
