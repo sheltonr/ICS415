@@ -21,7 +21,6 @@
 			echo '
 			#myheader {
 				background-image:url(images/headers/' . $_SESSION['header'] . '.jpg);
-				font-color: #fff;
 			}';
 		}
 		echo '</style>';
@@ -68,9 +67,9 @@
 		</div>
 		<div class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
-		<li class="active"><a href="">Home</a></li>
-		<li><a href="Trivia.php">Trivia</a></li>
-		<li><a href="About.php">About</a></li>
+		<li class="active"><a href="Home.php">Home &nbsp;<span class="glyphicon glyphicon-home"></span></a></li>
+		<li><a href="Trivia.php">Trivia &nbsp;<span class="glyphicon glyphicon-glass"></a></li>
+		<li><a href="About.php">About &nbsp;<span class="glyphicon glyphicon-cloud"></a></li>
 		</ul>
 		<form class="navbar-form navbar-right" action="Index.php" method="post">
 		<button type="submit" name="logout" class="btn btn-primary">Logout</button>
@@ -83,7 +82,7 @@
 		
 		<!-- Content -->
 		<div class="container">
-			<div class ="jumbotron" id="myheader">
+			<div class="jumbotron" id="myheader">
 			<h2>Home</h2>
 			</div>
 			<div class ="jumbotron">
@@ -141,7 +140,7 @@
 							</button>
 						<p><br/></p>
 						<form action="Index.php" method="post">
-						<button type="submit" class="btn btn-primary" onclick="selected()">Save changes</button>
+						<button type="submit" class="btn btn-primary" onclick="selected()">Save changes &nbsp;<span class="glyphicon glyphicon-floppy-saved"></span></button>
 						<input type="hidden" id="background" name="background" value=<?php echo $_SESSION['background']; ?> </input>
 						<input type="hidden" id="header" name="header" value=<?php echo $_SESSION['header']; ?> </input>
 						</form>

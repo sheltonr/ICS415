@@ -32,7 +32,6 @@
 			echo '
 			#myheader {
 				background-image:url(images/headers/' . $_SESSION['header'] . '.jpg);
-				font-color: #fff;
 			}';
 		}
 		echo '</style>';
@@ -89,9 +88,9 @@
 		</div>
 		<div class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
-		<li><a href="Home.php">Home</a></li>
-		<li class="active"><a href="Trivia.php">Trivia</a></li>
-		<li><a href="About.php">About</a></li>
+		<li><a href="Home.php">Home &nbsp;<span class="glyphicon glyphicon-home"></span></a></li>
+		<li class="active"><a href="Trivia.php">Trivia &nbsp;<span class="glyphicon glyphicon-glass"></a></li>
+		<li><a href="About.php">About &nbsp;<span class="glyphicon glyphicon-cloud"></a></li>
 		</ul>
 		<form class="navbar-form navbar-right" action="Index.php" method="post">
 		<button type="submit" name="logout" class="btn btn-primary">Logout</button>
@@ -110,7 +109,7 @@
 			<div class ="jumbotron">
 				<div class="row">
 					<div class="col-md-8">
-						<h2>Daily Trivia
+						<h2>Random Trivia
 							<button type="button" id="toggle" class="btn btn-sm btn-success">Show answer</button>
 						</h2>
 							<p class="alert alert-warning" id="question"><strong>Question</strong></p>

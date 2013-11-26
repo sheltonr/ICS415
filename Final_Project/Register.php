@@ -27,7 +27,6 @@
 		$realUserPass = md5($myUserPass);
 		$sql = "SELECT name, pass FROM myUsers WHERE name = '".$myUser."' AND pass = '".$realUserPass."';";
 		$result = mysqli_query($con, $sql);
-		//user not found
 		if ($myUserPass != $confirmPass) {
 			$status = 'Passwords do not match.';
 		} elseif (strlen($_POST['pass']) < 7){

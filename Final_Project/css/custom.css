@@ -18,15 +18,12 @@ h1, h2, h3, h4, h5, h6 {
 			
 .jumbotron {
 	color: #404040;
+	position: relative;
 }
 
 #myheader {
 	background-image: url('none');
-	no-repeat center center fixed; 
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	background-size:cover;
 }
 
 #title {

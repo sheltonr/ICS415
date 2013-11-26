@@ -11,7 +11,7 @@ $(function() {
 	});
 	$('#toggle').click(function() {
 		if ($('#answer').is(':visible')) {
-			$('#answer').hide('fast', 'linear', next());
+			$('#answer').hide(next());
 			$('#toggle').text('Show answer');
 			$('#toggle').attr('class', 'btn btn-success btn-sm');
 		} else {

@@ -21,7 +21,6 @@
 			echo '
 			#myheader {
 				background-image:url(images/headers/' . $_SESSION['header'] . '.jpg);
-				font-color: #fff;
 			}';
 		}
 		echo '</style>';
@@ -59,18 +58,18 @@
 		<div class="container">
 		<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle</span>
+		<span class="sr-only">Toggle Navigation</span>
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
 		</button>
 		<a class="navbar-brand" href=""><strong>Welcome <?php echo $_SESSION['user']; ?></strong></a>
 		</div>
-		<div class="collapse navbar-collapse">
+		<div class="navbar-collapse collapse">
 		<ul class="nav navbar-nav">
-		<li><a href="Home.php">Home</a></li>
-		<li><a href="Trivia.php">Trivia</a></li>
-		<li class="active"><a href="">About</a></li>
+		<li><a href="Home.php">Home &nbsp;<span class="glyphicon glyphicon-home"></span></a></li>
+		<li><a href="Trivia.php">Trivia &nbsp;<span class="glyphicon glyphicon-glass"></a></li>
+		<li class="active"><a href="About.php">About &nbsp;<span class="glyphicon glyphicon-cloud"></a></li>
 		</ul>
 		<form class="navbar-form navbar-right" action="Index.php" method="post">
 		<button type="submit" name="logout" class="btn btn-primary">Logout</button>
@@ -87,6 +86,7 @@
 			<h2>About</h2>
 			</div>
 			<div class="jumbotron">
+				<h2 id="title">Web Technologies</h2>
 				<div id="Carousel" class="carousel slide">
 				<ol class="carousel-indicators">
 				<li data-target="Carousel" data-slide-to="0" class="active"></li>
@@ -97,47 +97,42 @@
 				</ol>
 				<div class="carousel-inner">
 				<div class="item active">
-				<img src="images/body-bg.jpg">
+				<img src="images/backgrounds/bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
 							<h1> Bootstrap </h1>
-							<p>Make responsive pages with Bootstrap!</p>
 						</div>
 					</div>
 				</div> <!-- item 0 -->
 				<div class="item">
-				<img src="images/body-bg.jpg">
+				<img src="images/backgrounds/bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
 							<h1> PHP </h1>
-							<h3> PHP Hypertext Preprocessor </h3>
 						</div>
 					</div>
 				</div> <!-- item 1 -->
 				<div class="item">
-				<img src="images/body-bg.jpg">
+				<img src="images/backgrounds/bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
 							<h1> MySQL </h1>
-							<h3> Relational Database Management System </h3>
 						</div>
 					</div>
 				</div> <!-- item 2 -->
 				<div class="item">
-				<img src="images/body-bg.jpg">
+				<img src="images/backgrounds/bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
 							<h1> Javascript </h1>
-							<h3> Scripting language </h3>
 						</div>
 					</div>
 				</div> <!-- item 3 -->
 				<div class="item">
-				<img src="images/body-bg.jpg">
+				<img src="images/backgrounds/bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
 							<h1> AJAX </h1>
-							<h3> Asynchronous Javascript and XML </h3>
 						</div>
 					</div>
 				</div> <!-- item 4 -->
