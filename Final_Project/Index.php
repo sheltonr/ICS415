@@ -19,13 +19,14 @@
 	//try to login
 	if (isset($_POST['login'])) {
 		//santization
+		$salt = 'cowabunga';
 		$myUser = mysql_real_escape_string($_POST['user']);
 		$myUser = stripslashes($myUser);
 		$myUser = strip_tags($myUser);
 		$myUserPass = mysql_real_escape_string($_POST['pass']); 
 		$myUserPass = stripslashes($myUserPass);
 		$myUserPass = strip_tags($myUserPass);
-		$myUserPass = md5($myUserPass);
+		$myUserPass = sha1($salt.$myUserPass);
 		//user name or pass not given
 		if ($myUser == '' || $myUserPass == '') {
 			$_SESSION['status'] = 'Requires username and password';

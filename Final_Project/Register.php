@@ -15,6 +15,7 @@
 	$con = mysqli_connect($host, $user, $pass, $db);
 	//try to register
 	if (isset($_POST['register'])) {
+		$salt = 'cowabunga';
 		$myUser = mysql_real_escape_string($_POST['user']);
 		$myUser = stripslashes($myUser);
 		$myUser = strip_tags($myUser);
@@ -24,8 +25,8 @@
 		$confirmPass = mysql_real_escape_string($_POST['confirm']); 
 		$confirmPass = stripslashes($confirmPass);
 		$confirmPass = strip_tags($confirmPass);
-		$realUserPass = md5($myUserPass);
-		$sql = "SELECT name, pass FROM myUsers WHERE name = '".$myUser."' AND pass = '".$realUserPass."';";
+		$realUserPass = sha1($salt.$myUserPass);
+		$sql = "SELECT name, pass FROM myUsers WHERE name = '".$myUser."';";
 		$result = mysqli_query($con, $sql);
 		if ($myUserPass != $confirmPass) {
 			$status = 'Passwords do not match.';
@@ -36,11 +37,11 @@
 				mysqli_query($con, $sql);
 				$sql = "INSERT INTO myUsersData(created) VALUES('".$time."');";
 				mysqli_query($con, $sql);
-				$_SESSION['status'] = 'Account successfully created.';
+				$_SESSION['status'] = $myUser . ' successfully created.';
 				header('Location: Login.php');
 				die();
 		} else {
-			$status = 'User already exists.';
+			$status = $myUser . ' already exists.';
 		}
 	}
 	
@@ -63,7 +64,7 @@
 		<!-- Css -->
 		<link href="css/login.css" rel="stylesheet" media="screen">
 		<!-- Ajax -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 		<!-- JavaScript -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

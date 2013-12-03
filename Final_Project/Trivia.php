@@ -50,7 +50,7 @@
 		<!-- Css -->
 		<link href="css/custom.css" rel="stylesheet" media="screen">
 		<!-- Ajax -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 		<!-- JavaScript -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/myscript.js"></script>
@@ -103,20 +103,24 @@
 		
 		<!-- Content -->
 		<div class="container">
-			<div class ="jumbotron" id="myheader">
-			<h2>Trivia</h2>
-			</div>
-			<div class ="jumbotron">
-				<div class="row">
-					<div class="col-md-8">
-						<h2>Random Trivia
-							<button type="button" id="toggle" class="btn btn-sm btn-success">Show answer</button>
-						</h2>
-							<p class="alert alert-warning" id="question"><strong>Question</strong></p>
-							<p class="alert alert-success" id="answer"><strong>Answer</strong></p>
-					</div>
-				</div>
-			</div>
+		<div class ="jumbotron" id="myheader">
+		<h2>Trivia</h2>
+		</div>
+		<div class ="jumbotron">
+		<div class="row">
+		<div class="col-md-8">
+		<h2>Random Trivia
+		<button type="button" id="toggle" class="btn btn-sm btn-success">Show answer</button>
+		</h2>
+		<p class="alert alert-warning" id="question"><strong>Question</strong></p>
+		<p class="alert alert-success" id="answer"><strong>Answer</strong></p>
+		</div>
+		<div class="col-md-3 col-md-offset-1">
+			<h4>Questions Remaining:</h4>
+			<p id="remaining">remaining</p>
+		</div>
+		</div>
+		</div>
 		</div>
 	</body>
 </html>

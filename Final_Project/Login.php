@@ -48,7 +48,7 @@
 		<!-- Css -->
 		<link href="css/login.css" rel="stylesheet" media="screen">
 		<!-- Ajax -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 		<!-- JavaScript -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

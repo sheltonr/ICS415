@@ -50,17 +50,20 @@ function next() {
 	if (curr < answers.length) {
 		$('#answer').text(answers[random[curr]]);
 		$('#question').text(questions[random[curr]]);
+		$('#remaining').text(answers.length - curr);
 	curr++;
 	} else {
 		$('#answer').hide('slow');
 		$('#question').text('Trivia done!');
 		$('#answer').text('Yes, it is true.');
+		$('#remaining').text('0');
 	}
 }
 
 function set(myAnswers, myQuestions, myRandom) {
-	answers= myAnswers;
+	answers = myAnswers;
 	questions = myQuestions;
-	random = myRandom;	
+	random = myRandom;
+	curr = 0;
 }
 		

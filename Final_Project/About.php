@@ -39,7 +39,7 @@
 		<!-- Css -->
 		<link href="css/custom.css" rel="stylesheet" media="screen">
 		<!-- Ajax -->
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
 		<!-- JavaScript -->
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/myscript.js"></script>
@@ -86,7 +86,6 @@
 			<h2>About</h2>
 			</div>
 			<div class="jumbotron">
-				<h2 id="title">Web Technologies</h2>
 				<div id="Carousel" class="carousel slide">
 				<ol class="carousel-indicators">
 				<li data-target="Carousel" data-slide-to="0" class="active"></li>
@@ -124,7 +123,7 @@
 				<img src="images/backgrounds/bg.jpg">
 					<div class="container">
 						<div class="carousel-caption">
-							<h1> Javascript </h1>
+							<h1> JavaScript </h1>
 						</div>
 					</div>
 				</div> <!-- item 3 -->
@@ -144,7 +143,30 @@
 				<span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
 				</div>
-			</div>
-		</div>
+				<h2 id="title"><strong>Web Technologies</strong></h2>
+				<!-- Lists -->
+				<h2> <strong> Bootstrap </strong> </h2>
+				<ul>
+					<li> All page layouts were made with bootstrap </li>
+					<li> Makes responsive web pages easily
+				</ul>
+				<h2> <strong> PHP </strong> </h2>
+				<ul>
+					<li> PHP Hypertext Preprocessor </li>
+					<li> Used for server-side communication </li>
+					<li> Sessions to allow guest access </li>
+				</ul> 
+				<h2> <strong> MySQL </strong> </h2>
+				<ul>
+					<li> Relational Database Management System </li>
+					<li> Used with PHP to store all user data </li>
+				</ul>
+				<h2> <strong> JavaScript and AJAX </strong> </h2>
+				<ul>
+					<li> Asynchronous JavaScript and XML 
+					<li> Everything cool on the page is done with JavaScript and AJAX </li>
+				</ul>
+			</div> <!-- jumbotron -->	
+		</div><!-- container -->
 	</body>
 </html>
